@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'video.dart';
 //import 'package:skizzo/screens/auth/auth_screen.dart';
 
 class LoginPage extends StatelessWidget {
@@ -37,7 +38,7 @@ class LoginPage extends StatelessWidget {
                     Text("Connexion",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                     SizedBox(height: 20,),
-                    Text("Se cpnnecter",
+                    Text("Se connecter",
                     style: TextStyle(
                       fontSize: 15,
                     color:Colors.grey[700]),)
@@ -73,7 +74,11 @@ class LoginPage extends StatelessWidget {
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => VideoPage()));
+                        },
                         color: Color(0xff0095FF),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
