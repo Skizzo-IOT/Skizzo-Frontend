@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:control_pad/control_pad.dart';
 
 class Joystick extends StatelessWidget {
+  const Joystick({ Key? key }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+        return Scaffold(
+      appBar: AppBar(
+        title: Text('Control Pad Example'),
+      ),
       body: Container(
-        child: Joystick(
-            size: 100,
-            isDraggable: true,
-            iconColor: Colors.amber,
-            backgroundColor: Colors.black,
-            opacity: 0.5,
-            joystickMode: JoystickModes.all,
-            onUpPressed: () {},
-            onLeftPressed: () {},
-            onRightPressed: () {},
-            onDownPressed: () {},
-            onPressed: (_direction) {}
-        ),
+        color: Colors.white,
+        child: JoystickView(),
       ),
     );
   }
