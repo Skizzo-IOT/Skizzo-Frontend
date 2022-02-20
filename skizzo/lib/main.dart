@@ -13,18 +13,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Container(
-      //double.infinity make it big as the parent allows
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height,
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+        body: Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Column(
-            children: <Widget>[
+            children: const [
               Text(
                 "Skizzo",
                 style: TextStyle(
@@ -37,24 +32,27 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          Image.asset("assets/homepage.jpg"),
-          Column(
-            children: <Widget>[
-              MaterialButton(
-                minWidth: double.infinity,
-                height: 60,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
-                },
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black),
-                    borderRadius: BorderRadius.circular(50)),
-              )
-            ],
+          Image.asset(
+            "assets/homepage.jpg",
+            width: 500,
+          ),
+          SizedBox(
+            width: 200,
+            child: MaterialButton(
+              height: 60,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: const Text("Se connecter"),
+            ),
           )
         ],
       ),
-    )));
+    ));
   }
 }
