@@ -200,16 +200,19 @@ class _ConnectionState extends State<Connection> {
     for (var key in keysPressed) {
       if (key == LogicalKeyboardKey.keyZ) {
         print("Z");
-        // nextDirectionX +=
+        nextDirectionY += 1;
       }
       if (key == LogicalKeyboardKey.keyQ) {
         print("Q");
+        nextDirectionX -= 1;
       }
       if (key == LogicalKeyboardKey.keyS) {
         print("S");
+        nextDirectionY -= 1;
       }
       if (key == LogicalKeyboardKey.keyD) {
         print("D");
+        nextDirectionX += 1;
       }
     }
 
