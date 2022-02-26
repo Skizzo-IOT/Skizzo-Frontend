@@ -8,7 +8,7 @@ class Joystick extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.blue,
+        color: Colors.grey.shade600.withOpacity(0.5),
       ),
       width: 100,
       height: 100,
@@ -19,10 +19,10 @@ class Joystick extends StatelessWidget {
             Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Spacer(),
                   CircleAvatar(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.grey.shade600,
                     child: Icon(Icons.arrow_drop_up),
                   ),
                   Spacer(),
@@ -31,14 +31,14 @@ class Joystick extends StatelessWidget {
             ),
             Expanded(
               child: Row(
-                children: const [
+                children: [
                   CircleAvatar(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.grey.shade600,
                     child: Icon(Icons.arrow_left),
                   ),
                   Spacer(),
                   CircleAvatar(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.grey.shade600,
                     child: Icon(Icons.arrow_right),
                   ),
                 ],
@@ -47,10 +47,10 @@ class Joystick extends StatelessWidget {
             Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: const [
+                children: [
                   Spacer(),
                   CircleAvatar(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.grey.shade600,
                     child: Icon(Icons.arrow_drop_down),
                   ),
                   Spacer(),

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:skizzo/screens/connection.dart';
+import 'package:skizzo/screens/auth/sign_in.dart';
+import 'package:skizzo/screens/splash/splash_screen.dart';
+import 'package:skizzo/screens/video/video_screen.dart';
 import 'package:skizzo/themes.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Connection(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Skizzo',
       theme: theme(),
-      initialRoute: Connection.route,
+      initialRoute: SplashScreen.route,
       routes: {
-        Connection.route: (context) => const Connection(),
+        SplashScreen.route: (context) => const SplashScreen(),
+        SignIn.route: (context) => const SignIn(),
+        VideoPage.route: (context) => const VideoPage(),
       },
     );
   }

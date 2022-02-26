@@ -11,23 +11,32 @@ ThemeData theme() {
 }
 
 TextTheme textTheme() {
-  return TextTheme(
+  return const TextTheme(
     bodyText1: TextStyle(
-      color: kTextColor,
+      color: Colors.black,
       fontWeight: FontWeight.normal,
-      fontSize: 14,
+      fontSize: 20,
+    ),
+    bodyText2: TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.normal,
+      fontSize: 15,
     ),
     headline1: TextStyle(
-      fontSize: 60,
+      fontSize: 28,
       fontWeight: FontWeight.bold,
-      color: kButtonColor,
-      letterSpacing: -1,
+      color: kActionColor,
     ),
   );
 }
 
 AppBarTheme appBarTheme() {
-  return AppBarTheme(
-    backgroundColor: Colors.orange[400]!,
+  return const AppBarTheme(
+    color: Colors.white,
+    iconTheme: IconThemeData(color: Colors.black),
+    titleTextStyle: TextStyle(
+      color: Colors.black,
+      fontSize: 18,
+    ),
   );
 }
