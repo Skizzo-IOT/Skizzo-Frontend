@@ -38,7 +38,7 @@ class Joystick extends StatelessWidget {
                   ),
                   Spacer(),
                   CircleAvatar(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Colors.grey.shade600,
                     child: Icon(Icons.arrow_right),
                   ),
                 ],

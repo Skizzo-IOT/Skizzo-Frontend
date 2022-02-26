@@ -55,7 +55,7 @@ class SignInForm extends StatelessWidget {
                 showTopSnackBar(
                   context,
                   const CustomSnackBar.error(
-                    message: "Identifiants incorrets",
+                    message: "Identifiants incorrects",
                   ),
                 );
               } else if (state is SignInLoaded) {
