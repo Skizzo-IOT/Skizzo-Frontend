@@ -73,75 +73,10 @@ class _VideoPageState extends State<VideoPage> {
             ),
             alignment: Alignment.center,
           ),
-          Positioned(
+          const Positioned(
             bottom: 10,
             left: 10,
-            child: Container(
-              color: Colors.blue,
-              width: 250,
-              height: 250,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      color: Colors.red,
-                      child: const Icon(
-                        Icons.arrow_upward_rounded,
-                        color: Colors.white,
-                        size: 50,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      color: Colors.black,
-                      child: const Icon(
-                        Icons.arrow_downward_rounded,
-                        color: Colors.white,
-                        size: 50,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: Container(
-              color: Colors.blue,
-              width: 250,
-              height: 250,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: double.infinity,
-                      color: Colors.red,
-                      child: const Icon(
-                        Icons.arrow_back_rounded,
-                        color: Colors.white,
-                        size: 50,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: double.infinity,
-                      color: Colors.black,
-                      child: const Icon(
-                        Icons.arrow_forward_rounded,
-                        color: Colors.white,
-                        size: 50,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            child: Joystick(),
           ),
         ],
       ),

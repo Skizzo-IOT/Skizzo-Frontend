@@ -10,10 +10,10 @@ class Joystick extends StatelessWidget {
         shape: BoxShape.circle,
         color: Colors.grey.shade600.withOpacity(0.5),
       ),
-      width: 100,
-      height: 100,
+      width: 200,
+      height: 200,
       child: Padding(
-        padding: const EdgeInsets.all(1),
+        padding: const EdgeInsets.all(5),
         child: Column(
           children: [
             Expanded(
@@ -21,7 +21,7 @@ class Joystick extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Spacer(),
-                  JoystickButton(icon: Icons.arrow_drop_up),
+                  Expanded(child: JoystickButton(icon: Icons.arrow_drop_up)),
                   Spacer(),
                 ],
               ),
@@ -29,9 +29,9 @@ class Joystick extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  JoystickButton(icon: Icons.arrow_left),
+                  Expanded(child: JoystickButton(icon: Icons.arrow_left)),
                   Spacer(),
-                  JoystickButton(icon: Icons.arrow_right),
+                  Expanded(child: JoystickButton(icon: Icons.arrow_right)),
                 ],
               ),
             ),
@@ -40,7 +40,7 @@ class Joystick extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Spacer(),
-                  JoystickButton(icon: Icons.arrow_drop_down),
+                  Expanded(child: JoystickButton(icon: Icons.arrow_drop_down)),
                   Spacer(),
                 ],
               ),
@@ -87,7 +87,8 @@ class _JoystickButtonState extends State<JoystickButton> {
       },
       child: CircleAvatar(
         backgroundColor: pressAttention ? Colors.grey.shade600 : Colors.grey,
-        child: Icon(widget.icon),
+        child: Icon(widget.icon, size: 60),
+        radius: 80,
       ),
     );
   }
