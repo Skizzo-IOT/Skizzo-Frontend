@@ -21,10 +21,7 @@ class Joystick extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Spacer(),
-                  CircleAvatar(
-                    backgroundColor: Colors.grey.shade600,
-                    child: Icon(Icons.arrow_drop_up),
-                  ),
+                  JoystickButton(icon: Icons.arrow_drop_up),
                   Spacer(),
                 ],
               ),
@@ -32,15 +29,9 @@ class Joystick extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.grey.shade600,
-                    child: Icon(Icons.arrow_left),
-                  ),
+                  JoystickButton(icon: Icons.arrow_left),
                   Spacer(),
-                  CircleAvatar(
-                    backgroundColor: Colors.grey.shade600,
-                    child: Icon(Icons.arrow_right),
-                  ),
+                  JoystickButton(icon: Icons.arrow_right),
                 ],
               ),
             ),
@@ -49,16 +40,54 @@ class Joystick extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Spacer(),
-                  CircleAvatar(
-                    backgroundColor: Colors.grey.shade600,
-                    child: Icon(Icons.arrow_drop_down),
-                  ),
+                  JoystickButton(icon: Icons.arrow_drop_down),
                   Spacer(),
                 ],
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class JoystickButton extends StatefulWidget {
+  const JoystickButton({
+    Key? key,
+    required this.icon,
+  }) : super(key: key);
+
+  final IconData icon;
+
+  @override
+  State<JoystickButton> createState() => _JoystickButtonState();
+}
+
+class _JoystickButtonState extends State<JoystickButton> {
+  bool pressAttention = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) {
+        setState(() {
+          pressAttention = true;
+        });
+      },
+      onTapUp: (_) {
+        setState(() {
+          pressAttention = false;
+        });
+      },
+      onTapCancel: () {
+        setState(() {
+          pressAttention = false;
+        });
+      },
+      child: CircleAvatar(
+        backgroundColor: pressAttention ? Colors.grey.shade600 : Colors.grey,
+        child: Icon(widget.icon),
       ),
     );
   }
