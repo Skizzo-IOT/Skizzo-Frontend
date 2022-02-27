@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:skizzo/constants.dart';
 
 class MyTextField extends StatefulWidget {
   final String text;
@@ -45,8 +46,14 @@ class _MyTextFieldState extends State<MyTextField> {
 
   _emailRetriever() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final email = prefs.getString('email') ?? '';
+    final email = prefs.getString(kEmailPref) ?? '';
     widget.controller.text = email;
+  }
+
+  _passwordRetriever() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final password = prefs.getString(kPwdPref) ?? '';
+    widget.controller.text = password;
   }
 
   @override
@@ -55,7 +62,15 @@ class _MyTextFieldState extends State<MyTextField> {
 
     if (widget.isEmail) {
       _emailRetriever();
+    } else if (widget.isPassword) {
+      _passwordRetriever();
     }
+  }
+
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -118,6 +133,14 @@ class _MyTextFieldState extends State<MyTextField> {
         if (widget.isEmail) {
           SharedPreferences.getInstance()
               .then((prefs) => prefs.setString('email', value!));
+        } else if (widget.isPassword) {
+          SharedPreferences.getInstance().then((prefs) {
+            var isPasswordSaved = prefs.getBool(kSavePwd) ?? false;
+            if (isPasswordSaved) {
+              SharedPreferences.getInstance()
+                  .then((prefs) => prefs.setString(kPwdPref, value!));
+            }
+          });
         }
       },
     );

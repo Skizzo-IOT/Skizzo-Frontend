@@ -15,13 +15,13 @@ class Repository {
     await Future.delayed(const Duration(milliseconds: kDelayQuery));
 
     final response = await http.post(
-      Uri.parse('http://$kServer/user/signin'),
+      Uri.parse('http://$kServer/api/login/signin'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(
         <String, String>{
-          'username': username,
+          'email': username,
           'password': password,
         },
       ),
@@ -33,7 +33,7 @@ class Repository {
       SharedPreferences.getInstance()
           .then((value) => value.setString('token', jsonResponse['token']));
     } else {
-      if (response.statusCode == 404) {
+      if (response.statusCode == 401) {
         throw const UnknowUserException("Identifiants incorrects");
       }
 

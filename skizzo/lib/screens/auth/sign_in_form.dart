@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skizzo/cubit/sign_in_cubit.dart';
+import 'package:skizzo/screens/auth/pwd_save.dart';
 import 'package:skizzo/screens/shared/my_text_field.dart';
 import 'package:skizzo/screens/shared/row_btn.dart';
 import 'package:skizzo/screens/video/video_screen.dart';
@@ -9,7 +10,6 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SignInForm extends StatelessWidget {
-  
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -29,7 +29,7 @@ class SignInForm extends StatelessWidget {
             controller: _emailController,
             isEmail: true,
             fontSize: 24,
-            iconSize: 35,
+            iconSize: 25,
           ),
           const SizedBox(height: 30),
           // PwdFormField(_passwordController),
@@ -39,8 +39,10 @@ class SignInForm extends StatelessWidget {
             controller: _passwordController,
             isPassword: true,
             fontSize: 24,
-            iconSize: 35,
+            iconSize: 25,
           ),
+          const SizedBox(height: 10),
+          const PwdSave(),
           const SizedBox(height: 30),
           BlocConsumer<SignInCubit, SignInState>(
             listener: (context, state) {

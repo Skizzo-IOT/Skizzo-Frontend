@@ -50,8 +50,7 @@ class RowBtn extends StatelessWidget {
                               color: textColor,
                             ),
                           )
-                        : const CircularProgressIndicator(
-                            color: kSecondaryColor),
+                        : const CircularProgressIndicator(color: Colors.white),
                   ),
                 ),
               ),
