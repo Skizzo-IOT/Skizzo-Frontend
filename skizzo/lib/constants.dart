@@ -14,8 +14,8 @@ const kDisabledButtonColor = Color(0xFFE0E0E0);
 final kDefaultBorderRadius = BorderRadius.circular(10);
 
 // Server IP
-// const kServer = "localhost:3000";
-const kServer = "10.0.2.2:3000";
+const kServer = "localhost:3000";
+// const kServer = "10.0.2.2:3000";
 
 //Query
 const kDelayQuery = 100;

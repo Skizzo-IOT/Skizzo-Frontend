@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skizzo/cubit/tcp_cubit.dart';
 
 class Joystick extends StatelessWidget {
   const Joystick({Key? key}) : super(key: key);
@@ -20,18 +22,54 @@ class Joystick extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Spacer(),
-                  Expanded(child: JoystickButton(icon: Icons.arrow_drop_up)),
-                  Spacer(),
+                  const Spacer(),
+                  Expanded(
+                    child: JoystickButton(
+                      icon: Icons.arrow_drop_up,
+                      onTapDown: () {
+                        BlocProvider.of<TcpCubit>(context).directionY += 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                      onTapCancel: () {
+                        BlocProvider.of<TcpCubit>(context).directionY -= 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                    ),
+                  ),
+                  const Spacer(),
                 ],
               ),
             ),
             Expanded(
               child: Row(
                 children: [
-                  Expanded(child: JoystickButton(icon: Icons.arrow_left)),
-                  Spacer(),
-                  Expanded(child: JoystickButton(icon: Icons.arrow_right)),
+                  Expanded(
+                    child: JoystickButton(
+                      icon: Icons.arrow_left,
+                      onTapDown: () {
+                        BlocProvider.of<TcpCubit>(context).directionX -= 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                      onTapCancel: () {
+                        BlocProvider.of<TcpCubit>(context).directionX += 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                    ),
+                  ),
+                  const Spacer(),
+                  Expanded(
+                    child: JoystickButton(
+                      icon: Icons.arrow_right,
+                      onTapDown: () {
+                        BlocProvider.of<TcpCubit>(context).directionX += 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                      onTapCancel: () {
+                        BlocProvider.of<TcpCubit>(context).directionX -= 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -39,9 +77,21 @@ class Joystick extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Spacer(),
-                  Expanded(child: JoystickButton(icon: Icons.arrow_drop_down)),
-                  Spacer(),
+                  const Spacer(),
+                  Expanded(
+                    child: JoystickButton(
+                      icon: Icons.arrow_drop_down,
+                      onTapDown: () {
+                        BlocProvider.of<TcpCubit>(context).directionY -= 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                      onTapCancel: () {
+                        BlocProvider.of<TcpCubit>(context).directionY += 1;
+                        BlocProvider.of<TcpCubit>(context).sendDirection();
+                      },
+                    ),
+                  ),
+                  const Spacer(),
                 ],
               ),
             )
@@ -53,12 +103,16 @@ class Joystick extends StatelessWidget {
 }
 
 class JoystickButton extends StatefulWidget {
+  final IconData icon;
+  final Function onTapDown;
+  final Function onTapCancel;
+
   const JoystickButton({
     Key? key,
     required this.icon,
+    required this.onTapDown,
+    required this.onTapCancel,
   }) : super(key: key);
-
-  final IconData icon;
 
   @override
   State<JoystickButton> createState() => _JoystickButtonState();
@@ -73,16 +127,19 @@ class _JoystickButtonState extends State<JoystickButton> {
       onTapDown: (_) {
         setState(() {
           pressAttention = true;
+          widget.onTapDown();
         });
       },
       onTapUp: (_) {
         setState(() {
           pressAttention = false;
+          widget.onTapCancel();
         });
       },
       onTapCancel: () {
         setState(() {
           pressAttention = false;
+          widget.onTapCancel();
         });
       },
       child: CircleAvatar(
