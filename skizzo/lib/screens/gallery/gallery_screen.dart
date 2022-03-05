@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:skizzo/cubit/gallery_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'body.dart';
 
 class GalleryScreen extends StatelessWidget {
-  const GalleryScreen({ Key? key }) : super(key: key);
+  const GalleryScreen({Key? key}) : super(key: key);
 
   static const route = "/Gallery";
 
   @override
   Widget build(BuildContext context) {
-    List<Image> images = [];
-    images.add(Image(image: AssetImage('assets/robot.png'),));
-    images.add(Image(image: AssetImage('assets/robot.png'),));  
-    return Container(
-      child: Wrap(
-        children: <Widget>[
-          for(var i=0; i < images.length; i++)
-            images[i]
-        ],
-      )
+    return Scaffold(
+      appBar: AppBar(title: Text("Photos d'espionnages")),
+      body: BlocProvider(
+        create: (context) => GalleryCubit(),
+        child: const Body(),
+      ),
     );
   }
 }

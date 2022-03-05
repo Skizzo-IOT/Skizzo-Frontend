@@ -5,6 +5,7 @@ import 'package:skizzo/constants.dart';
 import 'package:skizzo/cubit/image_cubit.dart';
 import 'package:skizzo/cubit/tcp_cubit.dart';
 import 'package:skizzo/screens/auth/sign_in.dart';
+import 'package:skizzo/screens/gallery/gallery_screen.dart';
 import 'package:skizzo/screens/video/joystick.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skizzo/screens/video/my_image_video.dart';
@@ -61,13 +62,13 @@ class _BodyState extends State<Body> {
               bottom: 100,
               right: 0,
               child: FloatingActionButton(
-                heroTag: "btn1",
+                heroTag: "btn3",
                 onPressed: () async {
-                  final pref = await SharedPreferences.getInstance();
-                  pref.setString(kTokenPref, "");
-
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      SignIn.route, (Route<dynamic> route) => false);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const GalleryScreen()),
+                  );
                 },
                 backgroundColor: kSecondaryColor,
                 child: const Icon(Icons.photo),

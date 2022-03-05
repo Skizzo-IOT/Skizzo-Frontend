@@ -8,6 +8,39 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skizzo/constants.dart';
 
 class ResRepository {
+  Future<List<String>> getAll() async {
+    try {
+      await Future.delayed(const Duration(milliseconds: kDelayQuery));
+
+      final pref = await SharedPreferences.getInstance();
+      final token = pref.getString(kTokenPref);
+      Map<String, String> requestHeaders = {
+        'Authorization': "Bearer $token",
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
+
+      final response = await http.get(
+        Uri.parse('http://$kServer/api/res/getAll'),
+        headers: requestHeaders,
+      );
+
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+
+        List<String> data = [];
+        for (var test in jsonResponse["files"]) {
+          data.add(test);
+        }
+
+        return data;
+      } else {
+        throw const NetworkException("Une erreur est survenue");
+      }
+    } on Exception catch (e) {
+      throw NetworkException("Une erreur est survenue: ${e.toString()}");
+    }
+  }
+
   Future<String> uploadImage(Uint8List file, String filename) async {
     try {
       await Future.delayed(const Duration(milliseconds: kDelayQuery));
