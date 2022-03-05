@@ -10,7 +10,7 @@ part 'tcp_state.dart';
 
 class TcpCubit extends Cubit<TcpState> {
   late WebSocketChannel channel;
-
+  Uint8List? dataLastImage;
   TcpCubit() : super(TcpInitial()) {
     connection();
 
@@ -18,6 +18,7 @@ class TcpCubit extends Cubit<TcpState> {
       (data) {
         if (data is Uint8List) {
           print("data received");
+          dataLastImage = data;
           onImageReceived(data);
         } else {
           print("data received");

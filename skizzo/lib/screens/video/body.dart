@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skizzo/constants.dart';
+import 'package:skizzo/cubit/image_cubit.dart';
 import 'package:skizzo/cubit/tcp_cubit.dart';
 import 'package:skizzo/screens/auth/sign_in.dart';
 import 'package:skizzo/screens/video/joystick.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skizzo/screens/video/my_image_video.dart';
+import 'package:skizzo/screens/video/photo.dart';
 
 class Body extends StatefulWidget {
   Body({Key? key}) : super(key: key);
@@ -36,6 +38,7 @@ class _BodyState extends State<Body> {
       focusNode: _focusNode,
       onKey: _handleKeyEvent,
       child: Scaffold(
+        backgroundColor: Colors.black,
         floatingActionButton: Stack(
           children: [
             Positioned(
@@ -55,14 +58,24 @@ class _BodyState extends State<Body> {
               ),
             ),
             Positioned(
-              bottom: 0,
+              bottom: 100,
               right: 0,
               child: FloatingActionButton(
-                heroTag: "btn2",
-                onPressed: () {},
+                heroTag: "btn1",
+                onPressed: () async {
+                  final pref = await SharedPreferences.getInstance();
+                  pref.setString(kTokenPref, "");
+
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      SignIn.route, (Route<dynamic> route) => false);
+                },
                 backgroundColor: kSecondaryColor,
-                child: const Icon(Icons.photo_camera),
+                child: const Icon(Icons.photo),
               ),
+            ),
+            BlocProvider(
+              create: (context) => ImageCubit(),
+              child: const Photo(),
             ),
           ],
         ),

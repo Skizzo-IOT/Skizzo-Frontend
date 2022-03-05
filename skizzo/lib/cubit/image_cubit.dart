@@ -11,7 +11,9 @@ class ImageCubit extends Cubit<ImageState> {
 
   ImageCubit() : super(ImageInitial());
 
-  Future<String> uploadImage(Uint8List file, String filename) async {
-    return await resRepository.uploadImage(file, filename);
+  Future<void> uploadImage(Uint8List file) async {
+    emit(ImageLoading());
+    String f = await resRepository.uploadImage(file, "file.jpg");
+    emit(ImageLoaded(f));
   }
 }

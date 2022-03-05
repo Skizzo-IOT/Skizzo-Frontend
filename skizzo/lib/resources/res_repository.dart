@@ -18,11 +18,11 @@ class ResRepository {
         'Authorization': "Bearer $token",
       };
 
-      final uri = Uri.http(kServer, '');
+      final uri = Uri.http(kServer, '/api/res/upload');
       var request = http.MultipartRequest('POST', uri);
       request.files.add(
         http.MultipartFile.fromBytes(
-          "logo",
+          "image",
           file,
           filename: filename,
           contentType: MediaType.parse(lookupMimeType(filename)!),

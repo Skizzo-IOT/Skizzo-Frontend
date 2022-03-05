@@ -27,9 +27,12 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TcpCubit(),
-      child: Body(),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: BlocProvider(
+        create: (context) => TcpCubit(),
+        child: Body(),
+      ),
     );
   }
 }
